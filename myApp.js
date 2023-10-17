@@ -3,20 +3,20 @@ const app = express();
 
 const helmet = require("helmet");
 const ninetyDaysInSeconds = 90*24*60*60;
-////Parant Template
-// app.use(
-//   helmet({
-//     hidePoweredBy: true,
-//     frameguard: { action: 'deny' },
-//     xssFilter: true,
-//     noSniff: true,
-//     ieNoOpen: true,
-//     hsts: {maxAge: ninetyDaysInSeconds, force: true},
-//     dnsPrefetchControl: true,
-//     noCache: true,
-//     contentSecurityPolicy: { directives: { defaultSrc: ["'self'"], scriptSrc: ["'self'", "trusted-cdn.com"] }},
-//   })
-// );
+//Parant Template
+app.use(
+  helmet({
+    hidePoweredBy: true,
+    frameguard: { action: 'deny' },
+    xssFilter: true,
+    noSniff: true,
+    ieNoOpen: true,
+    hsts: {maxAge: ninetyDaysInSeconds, force: true},
+    dnsPrefetchControl: true,
+    noCache: true,
+    contentSecurityPolicy: { directives: { defaultSrc: ["'self'"], scriptSrc: ["'self'", "trusted-cdn.com"] }},
+  })
+);
 
 app.use(helmet({
   frameguard: {         // configure
