@@ -1,9 +1,10 @@
 const express = require('express');
 const app = express();
 
-const helmet = require("helmet");
-const ninetyDaysInSeconds = 90*24*60*60;
-//Parant Template
+const helmet = require("helmet@3.21.3"); // Updated helmet version
+
+const ninetyDaysInSeconds = 90 * 24 * 60 * 60;
+
 app.use(
   helmet({
     hidePoweredBy: true,
@@ -11,7 +12,7 @@ app.use(
     xssFilter: true,
     noSniff: true,
     ieNoOpen: true,
-    hsts: {maxAge: ninetyDaysInSeconds, force: true},
+    hsts: { maxAge: ninetyDaysInSeconds, force: true },
     dnsPrefetchControl: true,
     noCache: true,
     contentSecurityPolicy: { directives: { defaultSrc: ["'self'"], scriptSrc: ["'self'", "trusted-cdn.com"] }},
@@ -19,66 +20,17 @@ app.use(
 );
 
 app.use(helmet({
-  frameguard: {         // configure
+  frameguard: {
     action: 'deny'
   },
-  contentSecurityPolicy: {    // enable and configure
+  contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
       styleSrc: ['style.com'],
     }
   },
-  dnsPrefetchControl: false     // disable
-}))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  dnsPrefetchControl: false
+}));
 
 module.exports = app;
 const api = require('./server.js');
